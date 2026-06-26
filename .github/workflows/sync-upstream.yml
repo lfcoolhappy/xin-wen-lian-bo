@@ -23,3 +23,10 @@ jobs:
           git checkout master
           git merge upstream/master --no-edit
           git push origin master
+      - name: Push to Gitee
+        env:
+          GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
+        run: |
+          git remote add gitee "https://oauth2:${GITEE_TOKEN}@gitee.com/lfcoolhappy/xin-wen-lian-bo.git" 2>/dev/null || \
+            git remote set-url gitee "https://oauth2:${GITEE_TOKEN}@gitee.com/lfcoolhappy/xin-wen-lian-bo.git"
+          git push gitee master
